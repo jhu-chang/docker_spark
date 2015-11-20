@@ -7,9 +7,9 @@ ENV UPDATE 60
 ENV BUILD 27
 
 ENV JAVA_HOME /usr/lib/jre/java-${VERSION}-oracle
-
-RUN yum install -y ca-certificates curl && \
-	curl --silent --location --retry 3 --cacert /etc/ssl/certs/GeoTrust_Global_CA.pem \
+COPY GeoTrust_Global_CA.pem /tmp/
+RUN yum install -y ca-certificates curl tar && \
+	curl --silent --location --retry 3 --cacert /tmp/GeoTrust_Global_CA.pem \
 	--header "Cookie: oraclelicense=accept-securebackup-cookie;" \
     http://download.oracle.com/otn-pub/java/jdk/"${VERSION}"u"${UPDATE}"-b"${BUILD}"/jre-"${VERSION}"u"${UPDATE}"-linux-x64.tar.gz \
 	| tar xz -C /tmp && \
