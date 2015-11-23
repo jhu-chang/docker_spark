@@ -16,9 +16,8 @@ RUN  yum install -y ca-certificates curl tar && \
 	| tar xz -C /tmp && \
 	mkdir -p /usr/lib/jdk && mv /tmp/jdk1.${VERSION}.0_${UPDATE} "${JAVA_HOME}" && \
 	yum clean all && \
-	rm -rf /tmp/* /var/tmp/*
-
-RUN update-alternatives --install "/usr/bin/java" "java" "${JAVA_HOME}/bin/java" 1 && \
+	rm -rf /tmp/* /var/tmp/* && \
+    update-alternatives --install "/usr/bin/java" "java" "${JAVA_HOME}/bin/java" 1 && \
 	update-alternatives --install "/usr/bin/javaws" "javaws" "${JAVA_HOME}/bin/javaws" 1 && \
 	update-alternatives --install "/usr/bin/javac" "javac" "${JAVA_HOME}/bin/javac" 1 && \
 	update-alternatives --set java "${JAVA_HOME}/bin/java" && \
