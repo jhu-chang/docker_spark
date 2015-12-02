@@ -15,7 +15,7 @@ RUN yum install -y ca-certificates curl tar && \
 	| tar xz -C /tmp && \
 	mkdir -p /usr/lib/jre && mv /tmp/jre1.${VERSION}.0_${UPDATE} "${JAVA_HOME}" && \
 	yum clean all && \
-	rm -rf /tmp/* /var/tmp/* && \
+	rm -rf /tmp/* /var/tmp/* ${JAVA_HOME}/src.zip ${JAVA_HOME}/javafx-src.zip ${JAVA_HOME}/lib/missioncontrol ${JAVA_HOME}/lib/visualvm && \
     update-alternatives --install "/usr/bin/java" "java" "${JAVA_HOME}/bin/java" 1 && \
 	update-alternatives --install "/usr/bin/javaws" "javaws" "${JAVA_HOME}/bin/javaws" 1 && \
 	update-alternatives --set java "${JAVA_HOME}/bin/java" && \
