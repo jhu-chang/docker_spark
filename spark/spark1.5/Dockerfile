@@ -10,5 +10,6 @@ ENV SPARK_HOME /opt/spark-"${SPARK_PACKAGE}"
 # RUN curl --silent --retry 3 --location http://apache.fayea.com/spark/spark-"${SPARK_Version}"/spark-"${SPARK_PACKAGE}".tgz \
 RUN yum install -y python && \
     curl --silent --retry 3 --location "http://www.apache.org/dyn/closer.lua?filename=spark/spark-${SPARK_Version}/spark-${SPARK_PACKAGE}.tgz&action=download"  \
-    | tar -xzC /opt && rm -fr ${SPARK_HOME}/lib/spark-examples*.jar ${SPARK_HOME}/examples
+    | tar -xzC /opt && rm -fr ${SPARK_HOME}/lib/spark-examples*.jar ${SPARK_HOME}/examples && \
+    yum clean all
 
